@@ -1,0 +1,29 @@
+{
+    "name": "iugu/iugu-php",
+    "description": "iugu PHP Library",
+    "homepage": "https://iugu.com",
+    "keywords": [
+      "iugu",
+      "pagamentos",
+      "api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Iugu team and contributors",
+            "homepage": "https://github.com/iugu/iugu-php/contributors"
+        }
+    ],
+    "require": {
+      "php": ">=5.2",
+      "ext-curl": "*",
+      "ext-json": "*",
+      "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "simpletest/simpletest": "1.1.5"
+    },
+    "autoload": {
+      "classmap": ["lib/Iugu/"] 
+    }
+}

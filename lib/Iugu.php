@@ -15,18 +15,4 @@ require( $baseDirectory . "/Iugu/Customer.php" );
 
 require( $baseDirectory . "/Iugu/Factory.php" );
 
-try {
-  Iugu_Customer::find("0E76BD815751433DA27428950B447E2B");
-}
-catch (IuguObjectNotFound $e) {
-  echo $e->getMessage() . "\r\n";
-}
-
-try {
-  Iugu_Customer::find("0E76BD815751433DA27428950B447E2C");
-}
-catch (IuguObjectNotFound $e) {
-  echo $e->getMessage() . "\r\n";
-}
-
 ?>

@@ -75,6 +75,7 @@ class Iugu_APIRequest {
     }
 
     if (strtolower($method) == "delete") $opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
+    if (strtolower($method) == "put") $opts[CURLOPT_CUSTOMREQUEST] = 'PUT';
 
     $opts[CURLOPT_URL] = $url;
     $opts[CURLOPT_RETURNTRANSFER] = true;

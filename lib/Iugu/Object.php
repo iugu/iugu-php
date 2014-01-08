@@ -13,38 +13,39 @@ class Iugu_Object implements ArrayAccess
     $this->_attributes  = Array();
     $this->_unsavedAttributes = Array();  
 
-    print_r($attributes);
     foreach ($attributes as $key=>$value) {
      $this->_attributes[$key] = $value;
     }
   }
 
   public function __set($key, $value) {
-  
+    $this->offsetSet($key, $value);
   }
 
   public function __isset($key) {
-  
+    return $this->offsetExists($key);
   }
 
   public function __unset($key) {
-  
+    $this->offsetUnset($key);
   }
 
   public function __get($key) {
-  
+    return $this->offsetGet($key);
   }
 
   public function offsetSet($key, $value) {
-    $this->$key = $value; 
+    $this->_attributes[$key] = $value;
+    $this->_unsavedAttributes[$key] = 1;
   }
 
   public function offsetExists($k) {
-  
+    return array_key_exists($k, $this->_attributes);  
   }
 
   public function offsetUnset($key) {
-    unset($this->$key) ;
+    unset($this->_attributes[$key]);
+    unset($this->_unsavedAttributes[$key]);
   }
 
   public function offsetGet($key) {
@@ -55,12 +56,18 @@ class Iugu_Object implements ArrayAccess
     return array_keys($this->_attributes); 
   }
 
-  public function modifiedValues() {
-  
+  public function modifiedAttributes() {
+    return array_intersect_key( $this->_attributes, $this->_unsavedAttributes );
   }
 
   public function resetStates() {
-    $this->$_unsavedAttributes = Array();
+    $this->_unsavedAttributes= Array();
+  }
+
+  public function copy($object) {
+    foreach ($object->keys() as $key) {
+      $this->_attributes[$key] = $object[$key];
+    }
   }
 }
 

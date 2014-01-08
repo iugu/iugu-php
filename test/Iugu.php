@@ -14,22 +14,7 @@ if (!$apiKey) {
 
 include_once(dirname(__FILE__)."/../lib/Iugu.php");
 
-class Iugu_CustomerTest extends UnitTestCase
-{
-  public function testCreateAndDeleteCustomer()
-  {
-    $object = Iugu_Customer::create(
-      Array(
-        "email" => "patricknegri@gmail.com",
-        "name" => "Patrick Negri"
-      )
-    );
-
-    $this->assertNotNull($object);
-    $this->assertNotNull($object["id"]);
-
-    $this->assertTrue( $object->delete() );
-  }
-}
+include_once(dirname(__FILE__)."/Iugu/TestCase.php");
+include_once(dirname(__FILE__)."/Iugu/CustomerTest.php");
 
 ?>

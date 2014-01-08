@@ -23,22 +23,29 @@ class APIResource extends Iugu_Object
     return APIResource::$_apiRequester;
   }
 
-  private static function request( $data=Array(), $type="GET", $addend="" ) {
-    return self::getAPI()->request(
-      $type,
-      Iugu::getBaseURI() . self::objectBaseURI() . $addend,
-      $data
+  public static function url($object=NULL) {
+    $append = "";
+
+    if (is_string($object)) $append = "/" . $object; 
+    else if (is_object($object) && (isset($object["id"])) ) $append = "/" . $object["id"];
+
+    return Iugu::getBaseURI() . self::objectBaseURI() . $append;
+  }
+
+  public static function createFromResponse($response) {
+    return Iugu_Factory::createFromResponse(
+      self::convertClassToObjectType(),
+      $response
     );
   }
 
-  public static function url($object=NULL) {
-    return true;
-  }
-
   public static function create($attributes=Array()) {
-    return Iugu_Factory::createFromResponse(
-      self::convertClassToObjectType(),
-      self::request( $attributes, "POST" )
+    return self::createFromResponse(
+      self::getAPI()->request(
+        "POST",
+        self::url(),
+        $attributes
+      )
     );
   }
 
@@ -46,13 +53,11 @@ class APIResource extends Iugu_Object
     try {
       $response = self::getAPI()->request(
         "GET",
-        Iugu::getBaseURI() . self::objectBaseURI() . "/" . $id
+        self::url($id)
       );
     } catch (IuguObjectNotFound $e) {
      throw new IuguObjectNotFound(self::convertClassToObjectType(get_called_class()) . ":" . $id . " not found"); 
     }
-
-    print_r($response);
 
     // echo "OK\r\n";
     // echo self::convertClassToObjectType( get_called_class() ) . "\r\n";
@@ -60,15 +65,15 @@ class APIResource extends Iugu_Object
     return null; 
   }
 
-  public function test() {
-    echo self::objectBaseURI() . "\r\n"; 
-  }
-
   public function delete() {
     if ($this["id"] == null) return false;
 
     try {
-      $response = self::request( Array(), "DELETE", "/" . $this["id"] );
+      $response = self::getAPI()->request(
+        "DELETE",
+        self::url($this)
+      );
+
       if (isset($response->errors)) throw IuguException();
     } catch (Exception $e) {
       return false;
@@ -77,6 +82,52 @@ class APIResource extends Iugu_Object
     return true;
   }
 
+  public function is_new() {
+    return !isset($this->_attributes["id"]); 
+  }
+
+  public function fetch() {
+    if ($this->is_new()) return false;
+
+    try {
+      $response = self::getAPI()->request(
+        "GET",
+        self::url($this)
+      );
+
+      if (isset($response->errors)) throw IuguObjectNotFound();
+
+      $new_object = self::createFromResponse( $response );
+      $this->copy( $new_object );
+      $this->resetStates();
+
+    } catch (Exception $e) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public function save() {
+    try {
+      $response = self::getAPI()->request(
+        $this->is_new() ? "POST" : "PUT",
+        self::url($this),
+        $this->modifiedAttributes()
+      );
+
+      if (isset($response->errors)) throw IuguException();
+
+      $new_object = self::createFromResponse( $response );
+      $this->copy( $new_object );
+      $this->resetStates();
+
+    } catch (Exception $e) {
+      return false;
+    }
+
+    return true;
+  }
 }
 
 ?>

@@ -64,6 +64,10 @@ class Iugu_Object implements ArrayAccess
     $this->_unsavedAttributes= Array();
   }
 
+  public function is_new() {
+    return !isset($this->_attributes["id"]); 
+  }
+
   public function copy($object) {
     foreach ($object->keys() as $key) {
       $this->_attributes[$key] = $object[$key];

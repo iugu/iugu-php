@@ -9,7 +9,7 @@ abstract class IuguResource {
 }
 
 abstract class Iugu {
-  const VERSION = "0.0.5";
+  const VERSION = "0.1.0";
 
   public static $api_key = null;
   public static $api_version = "v1";

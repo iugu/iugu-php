@@ -5,6 +5,7 @@ $baseDirectory = dirname(__FILE__);
 require( $baseDirectory . "/Iugu/Backward_Compatibility.php" );
 
 require( $baseDirectory . "/Iugu/Base.php" );
+require( $baseDirectory . "/Iugu/SearchResult.php" );
 require( $baseDirectory . "/Iugu/Object.php" );
 require( $baseDirectory . "/Iugu/Utilities.php" );
 

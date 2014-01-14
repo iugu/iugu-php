@@ -6,6 +6,7 @@ class APIResource extends Iugu_Object
 
   public static function convertClassToObjectType() {
     $object_type = str_replace("Iugu_", "", get_called_class());
+    $object_type = strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $object_type));
     return mb_strtolower($object_type, "UTF-8");
   }
 
@@ -23,20 +24,23 @@ class APIResource extends Iugu_Object
     return APIResource::$_apiRequester;
   }
 
-  public static function url($object=NULL) {
-    $append = "";
+  public static function endpointAPI($object=NULL, $uri_path="") {
+    $path  = "";
 
-    if (is_string($object)) $append = "/" . $object; 
-    else if (is_object($object) && (isset($object["id"])) ) $append = "/" . $object["id"];
+    if (is_string($object)) $path  = "/" . $object; 
+    else if (is_object($object) && (isset($object["id"])) ) $path = "/" . $object["id"];
 
-    return Iugu::getBaseURI() . self::objectBaseURI() . $append;
+    return Iugu::getBaseURI() . $uri_path . "/" . self::objectBaseURI() . $path;
   }
 
-  protected static function createFromResponse($response, &$totalRecords=null) {
+  public static function url($object=NULL) {
+    return self::endpointAPI( $object );
+  }
+
+  protected static function createFromResponse($response) {
     return Iugu_Factory::createFromResponse(
       self::convertClassToObjectType(),
-      $response,
-      $totalRecords
+      $response
     );
   }
 
@@ -44,7 +48,7 @@ class APIResource extends Iugu_Object
     return self::createFromResponse(
       self::API()->request(
         "POST",
-        self::url(),
+        static::url($attributes),
         $attributes
       )
     );
@@ -56,7 +60,7 @@ class APIResource extends Iugu_Object
     try {
       $response = self::API()->request(
         "DELETE",
-        self::url($this)
+        static::url($this)
       );
 
       if (isset($response->errors)) throw IuguException();
@@ -71,9 +75,11 @@ class APIResource extends Iugu_Object
     try {
       $response = self::API()->request(
         "GET",
-        self::url(),
+        static::url($options),
         $options
       );
+
+      print_r($response);
 
       return self::createFromResponse($response);
 
@@ -84,16 +90,16 @@ class APIResource extends Iugu_Object
 
 
 
-  protected static function fetchAPI($id) {
+  protected static function fetchAPI($key) {
     try {
-      $response = self::API()->request(
+      $response = static::API()->request(
         "GET",
-        self::url($id)
+        static::url($key)
       );
 
       return self::createFromResponse($response);
     } catch (IuguObjectNotFound $e) {
-      throw new IuguObjectNotFound(self::convertClassToObjectType(get_called_class()) . ":" . $id . " not found"); 
+      throw new IuguObjectNotFound(self::convertClassToObjectType(get_called_class()) . ":" . " not found"); 
     }
   }
 
@@ -103,7 +109,7 @@ class APIResource extends Iugu_Object
     try {
       $response = self::API()->request(
         "GET",
-        self::url($this)
+        static::url($this)
       );
 
       if (isset($response->errors)) throw IuguObjectNotFound();
@@ -123,7 +129,7 @@ class APIResource extends Iugu_Object
     try {
       $response = self::API()->request(
         $this->is_new() ? "POST" : "PUT",
-        self::url($this),
+        static::url($this),
         $this->modifiedAttributes()
       );
 

@@ -11,8 +11,10 @@ require( $baseDirectory . "/Iugu/Utilities.php" );
 
 require( $baseDirectory . "/Iugu/APIRequest.php" );
 require( $baseDirectory . "/Iugu/APIResource.php" );
+require( $baseDirectory . "/Iugu/APIChildResource.php" );
 
 require( $baseDirectory . "/Iugu/Customer.php" );
+require( $baseDirectory . "/Iugu/PaymentMethod.php" );
 
 require( $baseDirectory . "/Iugu/Factory.php" );
 

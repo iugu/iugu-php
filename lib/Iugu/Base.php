@@ -16,7 +16,7 @@ abstract class Iugu {
   public static $endpoint = "https://api.iugu.com";
 
   public static function getBaseURI() {
-   return self::$endpoint . "/" . self::$api_version . "/"; 
+   return self::$endpoint . "/" . self::$api_version; 
   }
 
   public static function setApiKey( $_api_key ) {

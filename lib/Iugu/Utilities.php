@@ -14,6 +14,15 @@ class Iugu_Utilities {
     return (is_string($value) && mb_detect_encoding($value, "UTF-8", true) != "UTF-8")?utf8_encode($value):$value;
   }
 
+  public static function convertDateFromISO( $datetime )
+  {
+    return strtotime($datetime); 
+  }
+
+  public static function convertEpochToISO( $epoch ) {
+    return date("c", $ob);
+  }
+
   public static function arrayToParams($array,$prefix=null) {
     if (!is_array($array)) return $array;
 
@@ -36,6 +45,8 @@ class Iugu_Utilities {
 
     return implode("&", $params);
   }
+
+
 
 }
 

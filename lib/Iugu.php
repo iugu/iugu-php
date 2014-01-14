@@ -15,6 +15,8 @@ require( $baseDirectory . "/Iugu/APIChildResource.php" );
 
 require( $baseDirectory . "/Iugu/Customer.php" );
 require( $baseDirectory . "/Iugu/PaymentMethod.php" );
+require( $baseDirectory . "/Iugu/PaymentToken.php" );
+require( $baseDirectory . "/Iugu/Charge.php" );
 
 require( $baseDirectory . "/Iugu/Factory.php" );
 

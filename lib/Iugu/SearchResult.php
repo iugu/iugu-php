@@ -17,6 +17,11 @@ class Iugu_SearchResult
   public function results() {
    return $this->_results; 
   }
+
+  public function set($results, $totalResults) {
+    $this->_totalResults = $totalResults;
+    $this->_results = $results;
+  }
 }
 
 ?>

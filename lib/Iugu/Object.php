@@ -73,6 +73,11 @@ class Iugu_Object implements ArrayAccess
       $this->_attributes[$key] = $object[$key];
     }
   }
+
+  public function __toString() {
+    if (isset($this->_attributes["id"])) return $this->_attributes["id"];
+    return null;
+  }
 }
 
 ?>

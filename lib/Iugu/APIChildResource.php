@@ -13,16 +13,35 @@ class APIChildResource {
     return array_merge( $attributes, $this->_parentKeys );
   }
 
+  private function configureParentKeys($object) {
+    foreach ($this->_parentKeys as $key => $value)  {
+      $object[$key] = $value;
+    }
+    return $object;
+  }
+
   public function create($attributes=Array()) {
-    return call_user_func_array($this->_fabricator . '::create', array( $this->mergeparams($attributes) ));
+    $result = call_user_func_array($this->_fabricator . '::create', array( $this->mergeparams($attributes), $this->_parentKeys ));
+    if ($result) $this->configureParentKeys( $result );
+    return $result;
   }
 
   public function search($options=Array()) {
-    return call_user_func_array($this->_fabricator . '::search', Array( $this->mergeParams($options) ));
+    $results = call_user_func_array($this->_fabricator . '::search', Array( $this->mergeParams($options), $this->_parentKeys ));
+    if ($results && $results->total()) {
+      $modifiedResults = $results->results();
+      for ($i=0;$i<count($modifiedResults);$i++) {
+        $modifiedResults[$i] = $this->configureParentKeys( $modifiedResults[$i] );
+      }
+      $results->set($modifiedResults, $results->total());
+    }
+    return $results;
   }
 
   public function fetch($key=Array()) {
-    return call_user_func_array($this->_fabricator . '::fetch', Array( $this->mergeParams($key) ));
+    $result = call_user_func_array($this->_fabricator . '::fetch', Array( $this->mergeParams($key), $this->_parentKeys ));
+    if ($result) $this->configureParentKeys( $result );
+    return $result;
   }
 }
 

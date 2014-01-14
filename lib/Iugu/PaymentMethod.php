@@ -20,6 +20,8 @@ class Iugu_PaymentMethod extends APIResource {
 
   public        function refresh()                   { return $this->refreshAPI(); }
   public static function search($options=Array())    { return self::searchAPI($options); }
+
+  // TODO: Allow charge from here
 }
 
 ?>

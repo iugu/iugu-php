@@ -14,6 +14,10 @@ class APIResource extends Iugu_Object
     $object_type = self::convertClassToObjectType();
     switch($object_type) {
       // Add Exceptions as needed
+      case 'charge':
+        return $object_type;
+      case 'payment_token':
+        return $object_type;
       default:
        return $object_type . 's'; 
     } 
@@ -78,8 +82,6 @@ class APIResource extends Iugu_Object
         static::url($options),
         $options
       );
-
-      print_r($response);
 
       return self::createFromResponse($response);
 

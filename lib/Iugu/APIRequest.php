@@ -21,20 +21,21 @@ class Iugu_APIRequest {
     }
 
     if ( Iugu::getApiKey() == null ) throw new IuguAuthenticationException("Chave de API não configurada. Utilize Iugu::setApiKey(...) para configurar.");
+    $data["api_token"] = Iugu::getApiKey();
 
     $headers = $this->_defaultHeaders();
     list( $response_body, $response_code ) = $this->requestWithCURL( $method, $url, $headers, $data );
 
     $response = json_decode($response_body);
-    # if (json_last_error() != JSON_ERROR_NONE) $response = json_encode( Array("errors" => Array("api" => "request_failed") ) );
-    if (json_last_error() != JSON_ERROR_NONE) throw new IuguObjectNotFound("Exception"); 
+    if (json_last_error() != JSON_ERROR_NONE) throw new IuguObjectNotFound($response_body); 
+
 
     if (isset($response->errors)) {
       if ((gettype($response->errors) != "string") && count(get_object_vars($response->errors)) == 0) {
         unset($response->errors);
       }
 
-      if ((gettype($response->errors) == "string") && ($response->errors == "Not Found")) {
+      if (isset($response->errors) && (gettype($response->errors) == "string")) {
         throw new IuguObjectNotFound("Not Found");
       }
     }

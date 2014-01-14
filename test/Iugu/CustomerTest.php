@@ -6,8 +6,6 @@ class Iugu_CustomerTest extends Iugu_TestCase
   {
     $object = self::createTestCustomer();
 
-    print_r($object);
-
     $this->assertNotNull($object);
     $this->assertNotNull($object["id"]);
 

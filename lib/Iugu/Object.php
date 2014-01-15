@@ -61,7 +61,7 @@ class Iugu_Object implements ArrayAccess
   }
 
   public function resetStates() {
-    $this->_unsavedAttributes= Array();
+    $this->_unsavedAttributes=Array();
   }
 
   public function is_new() {

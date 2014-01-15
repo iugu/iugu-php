@@ -57,11 +57,6 @@ class APIResource extends Iugu_Object
       )
     );
 
-    if (isset($response->errors)) {
-      $attributes["errors"] = (Array) $response->errors;
-      return json_decode( json_encode( $attributes ) );
-    }
-
     return $response;
   }
 

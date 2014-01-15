@@ -9,7 +9,7 @@ class Iugu_Charge extends APIResource {
     return $result; 
   }
 
-  public function Invoice() {
+  public function invoice() {
     if (!isset($this->invoice_id)) return false;
     if (!$this->invoice_id) return false;
     return Iugu_Invoice::fetch($this->invoice_id);

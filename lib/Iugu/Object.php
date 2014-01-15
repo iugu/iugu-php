@@ -76,7 +76,7 @@ class Iugu_Object implements ArrayAccess
 
   public function __toString() {
     if (isset($this->_attributes["id"])) return $this->_attributes["id"];
-    return null;
+    return get_called_class();
   }
 }
 

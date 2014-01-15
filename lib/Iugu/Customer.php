@@ -10,10 +10,16 @@ class Iugu_Customer extends APIResource {
   public        function refresh()                   { return $this->refreshAPI(); }
   public static function search($options=Array())    { return self::searchAPI($options); }
 
-  public        function paymentMethods()            { return new APIChildResource(Array("customer_id" => $this->id), "Iugu_PaymentMethod"); }
+  public        function payment_methods()            { return new APIChildResource(Array("customer_id" => $this->id), "Iugu_PaymentMethod"); }
+  public        function invoices()                  { return new APIChildResource(Array("customer_id" => $this->id), "Iugu_Invoice"); }
 
-  // TODO: get DefaultPaymentMethod and return
-  // TODO: list all invoices by the client
+  // TODO: (WAITING BUGFIX) get DefaultPaymentMethod and return
+  public function default_payment_method() {
+    if (!isset($this->default_payment_method_id)) return false;
+    if (!$this->default_payment_method_id) return false;
+    return Iugu_PaymentMethod::fetch($this->default_payment_method_id);
+  }
+
 }
 
 ?>

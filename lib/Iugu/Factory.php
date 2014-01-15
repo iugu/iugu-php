@@ -9,7 +9,7 @@ class Iugu_Factory
 
     if (!class_exists($class_name)) return null;
 
-    if ( is_object($response) && (isset($response->items)) ) {
+    if ( is_object($response) && (isset($response->items)) && (isset($response->totalItems)) ) {
       $results = Array();
 
       foreach ($response->items as $item) {

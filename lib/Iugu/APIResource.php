@@ -49,13 +49,20 @@ class APIResource extends Iugu_Object
   }
 
   protected static function createAPI($attributes=Array()) {
-    return self::createFromResponse(
+    $response = self::createFromResponse(
       self::API()->request(
         "POST",
         static::url($attributes),
         $attributes
       )
     );
+
+    if (isset($response->errors)) {
+      $attributes["errors"] = (Array) $response->errors;
+      return json_decode( json_encode( $attributes ) );
+    }
+
+    return $response;
   }
 
   protected function deleteAPI() {

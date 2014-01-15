@@ -29,7 +29,6 @@ class Iugu_APIRequest {
     $response = json_decode($response_body);
     if (json_last_error() != JSON_ERROR_NONE) throw new IuguObjectNotFound($response_body); 
 
-
     if (isset($response->errors)) {
       if ((gettype($response->errors) != "string") && count(get_object_vars($response->errors)) == 0) {
         unset($response->errors);

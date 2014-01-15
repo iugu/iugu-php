@@ -6,11 +6,13 @@ class Iugu_Charge extends APIResource {
     if (!isset($result->success)) {
       $result->success = false; 
     }
-   return $result; 
+    return $result; 
   }
 
-  public function invoice() {
-    // TODO: Return Invoice based on Invoice ID or Throw Error 
+  public function Invoice() {
+    if (!isset($this->invoice_id)) return false;
+    if (!$this->invoice_id) return false;
+    return Iugu_Invoice::fetch($this->invoice_id);
   }
 }
 

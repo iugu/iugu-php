@@ -39,6 +39,12 @@ class APIChildResource {
   }
 
   public function fetch($key=Array()) {
+    if (is_string($key)) {
+      $key = Array( "id" => $key );
+    }
+
+    print_r(Array( $this->mergeParams($key), $this->_parentKeys ));
+
     $result = call_user_func_array($this->_fabricator . '::fetch', Array( $this->mergeParams($key), $this->_parentKeys ));
     if ($result) $this->configureParentKeys( $result );
     return $result;

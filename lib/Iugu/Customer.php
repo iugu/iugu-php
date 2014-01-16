@@ -15,9 +15,15 @@ class Iugu_Customer extends APIResource {
 
   // TODO: (WAITING BUGFIX) get DefaultPaymentMethod and return
   public function default_payment_method() {
+    if (!isset($this->id)) return false;
     if (!isset($this->default_payment_method_id)) return false;
     if (!$this->default_payment_method_id) return false;
-    return Iugu_PaymentMethod::fetch($this->default_payment_method_id);
+    return Iugu_PaymentMethod::fetch(
+      Array(
+        "customer_id" => $this->id,
+        "id" => $this->default_payment_method_id
+      )
+    );
   }
 
 }

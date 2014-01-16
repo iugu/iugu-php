@@ -57,6 +57,10 @@ class APIResource extends Iugu_Object
       )
     );
 
+    foreach ( $attributes as $attr => $value) {
+      $response[ $attr ]  = $value;
+    }
+
     return $response;
   }
 
@@ -91,8 +95,6 @@ class APIResource extends Iugu_Object
 
     return Array();
   }
-
-
 
   protected static function fetchAPI($key) {
     try {
@@ -137,11 +139,12 @@ class APIResource extends Iugu_Object
         $this->modifiedAttributes()
       );
 
-      if (isset($response->errors)) throw IuguException();
 
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );
       $this->resetStates();
+
+      if (isset($response->errors)) throw new IuguException();
 
     } catch (Exception $e) {
       return false;

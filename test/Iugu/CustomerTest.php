@@ -17,6 +17,13 @@ class Iugu_CustomerTest extends Iugu_TestCase
     $object = self::createTestCustomer(Array("email"=>"patricknegri"));;
 
     $this->assertNull($object["id"]);
+    $this->assertTrue(count($object["errors"]) > 0);
+
+    $object->email = "patricknegri@gmail.com";
+    $object->save();
+
+    $this->assertNotNull($object["id"]);
+    $this->assertTrue( $object->delete() );
   }
 
   public function testCreateCustomerFromSave()
@@ -58,9 +65,6 @@ class Iugu_CustomerTest extends Iugu_TestCase
     $this->expectException("IuguObjectNotFound");
     Iugu_Customer::fetch("D245B36FCD4B42DDB44208D868FF2C10");
 
-    $this->expectException("IuguObjectNotFound");
-    Iugu_Customer::fetch("ANY SHIT");
-
     $this->assertTrue( $object->delete() );
   }
 
@@ -73,7 +77,7 @@ class Iugu_CustomerTest extends Iugu_TestCase
     $this->assertTrue( $searchResults->total() > 0 );
     $this->assertTrue( $object->delete() );
   }
-  
+
 }
 
 ?>

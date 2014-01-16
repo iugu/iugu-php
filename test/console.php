@@ -782,9 +782,9 @@ class PHP_Shell {
             }
             $obj = $GLOBALS[ltrim($objname, '$')];
 
-            if (is_object($obj)) {
-              throw new Exception(sprintf('Objects (%s) don\'t support array access operators', $objname));
-            }
+            // if (is_object($obj)) {
+            //  throw new Exception(sprintf('Objects (%s) don\'t support array access operators', $objname));
+            // }
           }
           break;
         }

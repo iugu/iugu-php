@@ -17,17 +17,20 @@ class Iugu_Subscription extends APIResource {
         "POST",
         static::url($this) . "/suspend"
       );
+      print_r($response);
       if (isset($response->errors)) {
-        throw IuguRequestException( $response->errors );
+        return false;
       }
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );
       $this->resetStates();
+      return $new_object;
+
     } catch (Exception $e) {
       return false;
     }
 
-    return true;
+    return false;
   }
 
   public function activate() {
@@ -39,16 +42,18 @@ class Iugu_Subscription extends APIResource {
         static::url($this) . "/activate"
       );
       if (isset($response->errors)) {
-        throw IuguRequestException( $response->errors );
+        return false;
       }
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );
       $this->resetStates();
+      return $new_object;
+
     } catch (Exception $e) {
       return false;
     }
 
-    return true;
+    return false;
   }
 
   public function change_plan( $identifier=null ) {
@@ -61,11 +66,8 @@ class Iugu_Subscription extends APIResource {
         static::url($this) . "/change_plan/" . $identifier
       );
       if (isset($response->errors)) {
-        throw IuguRequestException( $response->errors );
+        return false;
       }
-      $new_object = self::createFromResponse( $response );
-      $this->copy( $new_object );
-      $this->resetStates();
     } catch (Exception $e) {
       return false;
     }

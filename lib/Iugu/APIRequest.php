@@ -21,21 +21,28 @@ class Iugu_APIRequest {
     }
 
     if ( Iugu::getApiKey() == null ) throw new IuguAuthenticationException("Chave de API não configurada. Utilize Iugu::setApiKey(...) para configurar.");
-    $data["api_token"] = Iugu::getApiKey();
 
     $headers = $this->_defaultHeaders();
+
     list( $response_body, $response_code ) = $this->requestWithCURL( $method, $url, $headers, $data );
 
     $response = json_decode($response_body);
+
+
     if (json_last_error() != JSON_ERROR_NONE) throw new IuguObjectNotFound($response_body); 
+    if ($response_code == 404) throw new IuguObjectNotFound($response_body); 
 
     if (isset($response->errors)) {
+      
       if ((gettype($response->errors) != "string") && count(get_object_vars($response->errors)) == 0) {
         unset($response->errors);
       }
+      else if ((gettype($response->errors) != "string") && count(get_object_vars($response->errors)) > 0) {
+        $response->errors = (Array) $response->errors; 
+      }
 
       if (isset($response->errors) && (gettype($response->errors) == "string")) {
-        throw new IuguObjectNotFound("Not Found");
+        $response->errors = $response->errors;
       }
     }
 
@@ -71,11 +78,10 @@ class Iugu_APIRequest {
 
     list($url,$data) = $this->encodeParameters($method,$url,$data);
 
-    if ($data) {
+    if (strtolower($method) == "post") {
       $opts[CURLOPT_POST] = 1;
       $opts[CURLOPT_POSTFIELDS] = $data;
     }
-
     if (strtolower($method) == "delete") $opts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
     if (strtolower($method) == "put") $opts[CURLOPT_CUSTOMREQUEST] = 'PUT';
 

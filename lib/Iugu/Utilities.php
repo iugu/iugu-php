@@ -21,7 +21,6 @@ class Iugu_Utilities {
 
   public static function convertEpochToISO( $epoch ) {
     return date("c", $epoch);
-    
   }
 
   public static function arrayToParams($array,$prefix=null) {

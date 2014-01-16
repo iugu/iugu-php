@@ -17,8 +17,8 @@ require_once(".../iugu-php/lib/Iugu.php");
 ### Usando Composer
 
 ~~~
-$ composer require iugu/iugu-php
-Please provide a version constraint for the iugu/iugu-php requirement: <version>
+$ composer require iugu/iugu
+Please provide a version constraint for the iugu/iugu requirement: 1.0.0
 ~~~
 
 O autoload do composer irá cuidar do resto.
@@ -27,6 +27,21 @@ O autoload do composer irá cuidar do resto.
 
 ~~~
 Iugu::setApiKey("c73d49f9-6490-46ee-ba36-dcf69f6334fd"); // Ache sua chave API no Painel
+
+Iugu_Charge::create(
+    Array(
+      "token"=> "TOKEN QUE VEIO DO IUGU.JS OU CRIADO VIA BIBLIOTECA",
+      "email"=>"patricknegri@gmail.com",
+      "items" => 
+      Array(
+        Array(
+          "description"=>"Item Teste",
+          "quantity"=>"1",
+          "price_cents"=>"1000"
+          )
+        )
+      )
+    );
 ~~~
 
 ## Documentação

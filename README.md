@@ -18,7 +18,7 @@ require_once(".../iugu-php/lib/Iugu.php");
 
 ~~~
 $ composer require iugu/iugu
-Please provide a version constraint for the iugu/iugu requirement: 1.0.0
+Please provide a version constraint for the iugu/iugu requirement: 1.0.1
 ~~~
 
 O autoload do composer irá cuidar do resto.

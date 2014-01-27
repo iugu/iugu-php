@@ -9,6 +9,54 @@ class Iugu_Subscription extends APIResource {
   public        function refresh()                   { return $this->refreshAPI(); }
   public static function search($options=Array())    { return self::searchAPI($options); }
 
+  public function add_credits($quantity) {
+    if ($this->is_new()) return false;
+
+    try {
+      $response = self::API()->request(
+        "PUT",
+        static::url($this) . "/add_credits",
+        Array( "quantity" => $quantity )
+      );
+      if (isset($response->errors)) {
+        return false;
+      }
+      $new_object = self::createFromResponse( $response );
+      $this->copy( $new_object );
+      $this->resetStates();
+      return $new_object;
+
+    } catch (Exception $e) {
+      return false;
+    }
+
+    return false;
+  }
+
+  public function remove_credits($quantity) {
+    if ($this->is_new()) return false;
+
+    try {
+      $response = self::API()->request(
+        "PUT",
+        static::url($this) . "/remove_credits",
+        Array( "quantity" => $quantity )
+      );
+      if (isset($response->errors)) {
+        return false;
+      }
+      $new_object = self::createFromResponse( $response );
+      $this->copy( $new_object );
+      $this->resetStates();
+      return $new_object;
+
+    } catch (Exception $e) {
+      return false;
+    }
+
+    return false;
+  }
+
   public function suspend() {
     if ($this->is_new()) return false;
 
@@ -17,7 +65,6 @@ class Iugu_Subscription extends APIResource {
         "POST",
         static::url($this) . "/suspend"
       );
-      print_r($response);
       if (isset($response->errors)) {
         return false;
       }

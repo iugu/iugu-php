@@ -27,5 +27,3 @@ abstract class Iugu {
     return self::$api_key; 
   }
 }
-
-?>

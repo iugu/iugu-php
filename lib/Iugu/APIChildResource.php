@@ -50,5 +50,3 @@ class APIChildResource {
     return $result;
   }
 }
-
-?>

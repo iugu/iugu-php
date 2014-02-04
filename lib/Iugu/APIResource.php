@@ -153,5 +153,3 @@ class APIResource extends Iugu_Object
     return true;
   }
 }
-
-?>

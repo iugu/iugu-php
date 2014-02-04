@@ -23,5 +23,3 @@ class Iugu_SearchResult
     $this->_results = $results;
   }
 }
-
-?>

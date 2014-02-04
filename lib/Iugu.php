@@ -21,5 +21,3 @@ require( $baseDirectory . "/Iugu/Invoice.php" );
 require( $baseDirectory . "/Iugu/Subscription.php" );
 
 require( $baseDirectory . "/Iugu/Factory.php" );
-
-?>

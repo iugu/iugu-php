@@ -110,5 +110,3 @@ class Iugu_APIRequest {
     return Array($response_body, $response_code);
   }
 }
-
-?>

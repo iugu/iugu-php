@@ -128,5 +128,3 @@ class Iugu_Subscription extends APIResource {
     return Iugu_Customer::fetch($this->customer_id);
   }
 }
-
-?>

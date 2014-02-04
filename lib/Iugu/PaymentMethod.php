@@ -23,5 +23,3 @@ class Iugu_PaymentMethod extends APIResource {
 
   // TODO: (FUTURE) Allow charge from here
 }
-
-?>

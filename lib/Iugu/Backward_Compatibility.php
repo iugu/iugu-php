@@ -29,5 +29,3 @@ if(!function_exists('get_called_class')) {
       return class_tools::get_called_class();
   }
 }
-
-?>

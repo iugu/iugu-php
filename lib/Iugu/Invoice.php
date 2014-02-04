@@ -55,5 +55,3 @@ class Iugu_Invoice extends APIResource {
     return true;
   }
 }
-
-?>

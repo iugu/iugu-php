@@ -33,5 +33,3 @@ class Iugu_Factory
     return null; 
   }
 }
-
-?>

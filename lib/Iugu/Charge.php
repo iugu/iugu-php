@@ -15,5 +15,3 @@ class Iugu_Charge extends APIResource {
     return Iugu_Invoice::fetch($this->invoice_id);
   }
 }
-
-?>

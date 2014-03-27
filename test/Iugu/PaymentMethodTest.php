@@ -9,7 +9,7 @@ class Iugu_PaymentMethodTest extends Iugu_TestCase
     $this->pm = $this->customer->payment_methods();
     $this->cc = $this->pm->create(
       Array(
-        "description"=>"Porra de Teste",
+        "description"=>"Cartão Teste",
         "item_type"=>"credit_card",
         "data"=> 
           Array(
@@ -73,7 +73,7 @@ class Iugu_PaymentMethodTest extends Iugu_TestCase
   public function testCreateWrongPaymentMethod() {
     $cc = $this->pm->create(
       Array(
-        "description"=>"Porra de Teste",
+        "description"=>"Cartão Teste",
         "item_type"=>"credit_card",
         "data"=> Array(
           "number"=>"4111111111111115",

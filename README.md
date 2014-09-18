@@ -1,5 +1,9 @@
 # Iugu para PHP
 
+## Requisitos
+
+* PHP 5.3+
+
 ## Instalação
 
 Faça o download da biblioteca:

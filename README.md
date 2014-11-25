@@ -35,7 +35,7 @@ Iugu::setApiKey("c73d49f9-6490-46ee-ba36-dcf69f6334fd"); // Ache sua chave API n
 Iugu_Charge::create(
     Array(
       "token"=> "TOKEN QUE VEIO DO IUGU.JS OU CRIADO VIA BIBLIOTECA",
-      "email"=>"patricknegri@gmail.com",
+      "email"=>"your@email.test",
       "items" => 
       Array(
         Array(

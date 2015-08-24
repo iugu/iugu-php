@@ -28,7 +28,7 @@ class Iugu_Invoice extends APIResource {
       $this->copy( $new_object );
       $this->resetStates();
     } catch (IuguRequestException $e) {
-      return false;
+      return $e->getMessage();
     }
 
     return true;

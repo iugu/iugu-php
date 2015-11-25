@@ -27,8 +27,8 @@ class Iugu_Invoice extends APIResource {
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );
       $this->resetStates();
-    } catch (Exception $e) {
-      return false;
+    } catch (IuguRequestException $e) {
+      return $e->getMessage();
     }
 
     return true;
@@ -48,8 +48,8 @@ class Iugu_Invoice extends APIResource {
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );
       $this->resetStates();
-    } catch (Exception $e) {
-      return false;
+    } catch (IuguRequestException $e) {
+      return $e->getMessage();
     }
 
     return true;

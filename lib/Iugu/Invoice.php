@@ -23,7 +23,7 @@ class Iugu_Invoice extends APIResource {
         "PUT",
         static::url($this) . "/cancel"
       );
-      if (isset($response->errors)) throw IuguRequestException( $response->errors );
+      if (isset($response->errors)) throw new IuguRequestException( $response->errors );
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );
       $this->resetStates();
@@ -43,7 +43,7 @@ class Iugu_Invoice extends APIResource {
         static::url($this) . "/refund"
       );
       if (isset($response->errors)) {
-        throw IuguRequestException( $response->errors );
+        throw new IuguRequestException( $response->errors );
       }
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );

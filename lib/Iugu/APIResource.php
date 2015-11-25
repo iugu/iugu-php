@@ -73,7 +73,7 @@ class APIResource extends Iugu_Object
         static::url($this)
       );
 
-      if (isset($response->errors)) throw IuguException();
+      if (isset($response->errors)) throw new IuguException();
     } catch (Exception $e) {
       return false;
     }
@@ -118,7 +118,7 @@ class APIResource extends Iugu_Object
         static::url($this)
       );
 
-      if (isset($response->errors)) throw IuguObjectNotFound();
+      if (isset($response->errors)) throw new IuguObjectNotFound();
 
       $new_object = self::createFromResponse( $response );
       $this->copy( $new_object );

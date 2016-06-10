@@ -62,7 +62,6 @@ class Iugu_SubscriptionTest extends Iugu_TestCase
     {
         $this->assertTrue($this->subscription->suspend());
         $this->assertFalse($this->subscription->suspend());
-        $this->assertTrue($this->subscription->activate());
         $this->assertFalse($this->subscription->activate());
     }
 

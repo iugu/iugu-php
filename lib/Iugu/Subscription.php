@@ -97,14 +97,18 @@ class Iugu_Subscription extends APIResource
         'POST',
         static::url($this).'/suspend'
       );
+
             if (isset($response->errors)) {
                 return false;
             }
             $new_object = self::createFromResponse($response);
+
+            $new_flag = $new_object->suspended;
+            $old_flag = $this->suspended;
             $this->copy($new_object);
             $this->resetStates();
 
-            return $new_object;
+            return $old_flag != $new_flag;
         } catch (Exception $e) {
             return false;
         }
@@ -127,10 +131,13 @@ class Iugu_Subscription extends APIResource
                 return false;
             }
             $new_object = self::createFromResponse($response);
+
+            $new_flag = $new_object->active;
+            $old_flag = $this->active;
             $this->copy($new_object);
             $this->resetStates();
 
-            return $new_object;
+            return $old_flag != $new_flag;
         } catch (Exception $e) {
             return false;
         }

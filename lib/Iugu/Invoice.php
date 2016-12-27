@@ -91,4 +91,25 @@ class Iugu_Invoice extends APIResource
 
         return true;
     }
+	
+	public function duplicate($options=Array()) {
+		if ($this->is_new()) return false;
+
+		try {
+			$response = self::API()->request(
+				"POST",
+				static::url($this) . "/duplicate",
+				$options
+			);
+			if (isset($response->errors)) {
+				throw new IuguRequestException( $response->errors );
+			}
+			return self::createFromResponse($response);
+		} catch (Exception $e) {
+			return false;
+		}
+
+	return true;
+  }  
+	
 }

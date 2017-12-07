@@ -36,7 +36,7 @@ Iugu_Charge::create(
     Array(
       "token"=> "TOKEN QUE VEIO DO IUGU.JS OU CRIADO VIA BIBLIOTECA",
       "email"=>"your@email.test",
-      "items" => 
+      "items" =>
       Array(
         Array(
           "description"=>"Item Teste",

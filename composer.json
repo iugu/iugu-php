@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-      "php": ">=5.2",
+      "php": ">=5.4",
       "ext-curl": "*",
       "ext-json": "*",
       "ext-mbstring": "*"
@@ -24,6 +24,6 @@
         "simpletest/simpletest": "1.1.5"
     },
     "autoload": {
-      "classmap": ["lib/Iugu/"] 
+      "classmap": ["lib/Iugu/"]
     }
 }

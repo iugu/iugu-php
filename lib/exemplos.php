@@ -18,7 +18,7 @@
         "name"                      => 'nome',
         "reply_to"                  => 'email@email.com',
     ));
-    
+
     // verificação de subconta
     $validate = Iugu_Account::create(Array(
         "id"                        => 'CLIENT_ID ',
@@ -44,28 +44,28 @@
             "bank_cc"               => '999999-9',
         )
     ));
-    
+
     // retornando os dados do mktplace
     Iugu::setApiKey('TOKEN_IUGU');   // user token como parametro
     $account = Iugu_Account::fetch("CLIENT_ID"); // id da conta como parametro
-    
-    
-    
+
+
+
     // transferendo valor para subconta
     $transfer = Iugu_Transfer::create(Array(
         "receiver_id"               => "CLIENT_ID", // id da conta recebedora
         "amount_cents"              => '1000' // valor em centavos = R$ 10,00
     ));
-    
-    
+
+
     // retirando valor da subconta
     Iugu::setApiKey('TOKEN_IUGU');   // Chave do user
     $transfer = Iugu_Transfer::create(Array(
         "receiver_id"               => "CLIENT_ID", // chave da conta mestre ou da conta recebedora
         "amount_cents"              => $numValorCentavos
     ));
-    
-    
+
+
     // pedido de retirada de dinheiro
     Iugu::setApiKey('TOKEN_IUGU');   // Chave do user
     $withdraw = Iugu_Account::create(Array(

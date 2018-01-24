@@ -64,17 +64,17 @@ class Iugu_APIRequest
         $method = strtolower($method);
 
         switch ($method) {
-    case 'get':
-    case 'delete':
-      $paramsInURL = Iugu_Utilities::arrayToParams($data);
-      $data = null;
-      $url = (strpos($url, '?')) ? $url.'&'.$paramsInURL : $url.'?'.$paramsInURL;
-      break;
-    case 'post':
-    case 'put':
-      $data = Iugu_Utilities::arrayToParams($data);
-      break;
-    }
+        case 'get':
+        case 'delete':
+            $paramsInURL = Iugu_Utilities::arrayToParams($data);
+            $data = null;
+            $url = (strpos($url, '?')) ? $url.'&'.$paramsInURL : $url.'?'.$paramsInURL;
+            break;
+        case 'post':
+        case 'put':
+            $data = Iugu_Utilities::arrayToParams($data);
+            break;
+        }
 
         return [$url, $data];
     }

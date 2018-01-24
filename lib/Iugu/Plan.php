@@ -32,7 +32,7 @@ class Iugu_Plan extends APIResource
         return self::searchAPI($options);
     }
 
-    public static function retrieveByIdentifier($identifier) {
+    public static function fetchByIdentifier($identifier) {
         try {
             $response = self::API()->request(
                 "GET",

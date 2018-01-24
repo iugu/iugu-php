@@ -53,7 +53,7 @@ Acesse [iugu.com/documentacao](http://iugu.com/documentacao) para referência
 
 ## Testes
 
-Instale as dependências. Iugu-PHP utiliza SimpleTest.
+Instale as dependências:
 
 ```
 composer update
@@ -62,5 +62,6 @@ composer update
 Execute a comitiva de testes:
 
 ```
-php ./test/Iugu.php
+composer tests
 ```
+

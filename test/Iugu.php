@@ -1,6 +1,11 @@
 <?php
 
-include_once dirname(__FILE__).'/../vendor/simpletest/simpletest/autorun.php';
+if (file_exists(dirname(__FILE__).'/../vendor/simpletest/simpletest/autorun.php')) { 
+  include_once dirname(__FILE__).'/../vendor/simpletest/simpletest/autorun.php'; 
+} 
+if (file_exists(dirname(__FILE__).'/../../../../vendor/simpletest/simpletest/autorun.php')) { 
+  include_once dirname(__FILE__).'/../../../../vendor/simpletest/simpletest/autorun.php'; 
+} 
 
 error_reporting(E_ALL | E_STRICT);
 

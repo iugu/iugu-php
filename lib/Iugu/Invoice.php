@@ -92,7 +92,8 @@ class Iugu_Invoice extends APIResource
         return true;
     }
 	
-	public function duplicate($options=Array()) {
+  public function duplicate($options=Array())
+  {
 		if ($this->is_new()) return false;
 
 		try {
@@ -111,5 +112,29 @@ class Iugu_Invoice extends APIResource
 
 	return true;
   }  
-	
+
+
+    public function capture()
+    {
+        if ($this->is_new()) {
+            return false;
+        }
+
+        try {
+            $response = self::API()->request(
+                'POST',
+                static::url($this).'/capture'
+            );
+            if (isset($response->errors)) {
+                throw new IuguRequestException($response->errors);
+            }
+            $new_object = self::createFromResponse($response);
+            $this->copy($new_object);
+            $this->resetStates();
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return true;
+    }
 }

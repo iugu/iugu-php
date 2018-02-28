@@ -1,5 +1,7 @@
 # Iugu para PHP
 
+[![Build status](https://img.shields.io/travis/iugu/iugu-php.svg)](https://travis-ci.org/iugu/iugu-php)
+
 ## Requisitos
 
 * PHP 5.4+
@@ -53,7 +55,7 @@ Acesse [iugu.com/documentacao](http://iugu.com/documentacao) para referência
 
 ## Testes
 
-Instale as dependências. Iugu-PHP utiliza SimpleTest.
+Instale as dependências:
 
 ```
 composer update
@@ -62,5 +64,6 @@ composer update
 Execute a comitiva de testes:
 
 ```
-php ./test/Iugu.php
+composer tests
 ```
+

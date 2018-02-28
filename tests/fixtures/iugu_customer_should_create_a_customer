@@ -1,0 +1,32 @@
+
+-
+    request:
+        method: POST
+        url: 'http://api.desenvolvimento/v1/customers'
+        headers:
+            Host: api.desenvolvimento
+            Authorization: 'Basic ZGV2ZWxvcG1lbnRfYXBpX3Rva2VuOg=='
+            Accept: application/json
+            Accept-Charset: utf-8
+            User-Agent: 'Iugu PHPLibrary'
+            Accept-Language: 'pt-br;q=0.9,pt-BR'
+        body: 'email=martin%40fowler.com&name=Martin+Fowler&notes=Uses+emacs'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Server: nginx/1.13.5
+            Date: 'Wed, 24 Jan 2018 19:47:34 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Transfer-Encoding: chunked
+            Connection: keep-alive
+            x-HandledBy: 'api/v1/customer#create'
+            X-UA-Compatible: IE=Edge
+            ETag: '"fa7ae1adec07ffe45ea2191e16d645c8"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 639ff4e9bd2221957b52d2ca3bf2e2cb
+            X-Runtime: '0.067239'
+            Vary: Origin
+        body: '{"id":"2BF60A91BA4A4F28B8C85951C68FD288","email":"martin@fowler.com","name":"Martin Fowler","notes":"Uses emacs","created_at":"2018-01-24T17:47:34-02:00","updated_at":"2018-01-24T17:47:34-02:00","cc_emails":null,"cpf_cnpj":null,"zip_code":null,"number":null,"complement":null,"phone":null,"phone_prefix":null,"default_payment_method_id":null,"proxy_payments_from_customer_id":null,"city":null,"state":null,"district":null,"street":null,"custom_variables":[]}'

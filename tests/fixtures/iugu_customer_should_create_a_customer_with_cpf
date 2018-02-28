@@ -1,0 +1,32 @@
+
+-
+    request:
+        method: POST
+        url: 'http://api.desenvolvimento/v1/customers'
+        headers:
+            Host: api.desenvolvimento
+            Authorization: 'Basic ZGV2ZWxvcG1lbnRfYXBpX3Rva2VuOg=='
+            Accept: application/json
+            Accept-Charset: utf-8
+            User-Agent: 'Iugu PHPLibrary'
+            Accept-Language: 'pt-br;q=0.9,pt-BR'
+        body: 'email=martin%40fowler.com&name=Martin+Fowler&cpf_cnpj=648.144.103-01'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Server: nginx/1.13.8
+            Date: 'Wed, 28 Feb 2018 17:54:54 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Transfer-Encoding: chunked
+            Connection: keep-alive
+            x-HandledBy: 'api/v1/customer#create'
+            X-UA-Compatible: IE=Edge
+            ETag: '"1b412a1761665919e737c33cf9db1d11"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 70c120d1f0c197963ed85cd80b6d072e
+            X-Runtime: '0.183518'
+            Vary: Origin
+        body: '{"id":"200F0B147C88487FAFBCA1862AF47A32","email":"martin@fowler.com","name":"Martin Fowler","notes":null,"created_at":"2018-02-28T14:54:54-03:00","updated_at":"2018-02-28T14:54:54-03:00","cc_emails":null,"cpf_cnpj":"648.144.103-01","zip_code":null,"number":null,"complement":null,"phone":null,"phone_prefix":null,"default_payment_method_id":null,"proxy_payments_from_customer_id":null,"city":null,"state":null,"district":null,"street":null,"custom_variables":[]}'

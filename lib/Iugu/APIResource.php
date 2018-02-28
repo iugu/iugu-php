@@ -1,11 +1,11 @@
 <?php
 
-class APIResource extends Iugu_Object 
+class APIResource extends Iugu_Object
 {
 
     private static $_apiRequester = null;
 
-    public static function convertClassToObjectType() 
+    public static function convertClassToObjectType()
     {
         $object_type = str_replace('Iugu_', '', get_called_class());
         $object_type = strtolower(preg_replace('/(?<=\\w)([A-Z])/', '_\\1', $object_type));
@@ -13,25 +13,25 @@ class APIResource extends Iugu_Object
         return mb_strtolower($object_type, 'UTF-8');
     }
 
-    public static function objectBaseURI() 
+    public static function objectBaseURI()
     {
         $object_type = self::convertClassToObjectType();
         switch ($object_type) {
             // Add Exceptions as needed
-            case 'charge':
-                return $object_type;
-            case 'payment_token':
-                return $object_type;
-            case 'bank_verification':
-                return $object_type;
-            case 'marketplace': 
-                return $object_type; // WORKAROUND MARKETPLACE
-            default:
-                return $object_type . 's';
+        case 'charge':
+            return $object_type;
+        case 'payment_token':
+            return $object_type;
+        case 'bank_verification':
+            return $object_type;
+        case 'marketplace':
+            return $object_type; // WORKAROUND MARKETPLACE
+        default:
+            return $object_type . 's';
         }
     }
 
-    public static function API() 
+    public static function API()
     {
         if (self::$_apiRequester == null) {
             self::$_apiRequester = new Iugu_APIRequest();
@@ -40,7 +40,7 @@ class APIResource extends Iugu_Object
         return self::$_apiRequester;
     }
 
-    public static function endpointAPI($object = null, $uri_path = '') 
+    public static function endpointAPI($object = null, $uri_path = '')
     {
         $path = '';
 
@@ -61,19 +61,19 @@ class APIResource extends Iugu_Object
         return Iugu::getBaseURI() . $uri_path . '/' . self::objectBaseURI() . $path;
     }
 
-    public static function url($object = null) 
+    public static function url($object = null)
     {
         return self::endpointAPI($object);
     }
 
-    protected static function createFromResponse($response) 
+    protected static function createFromResponse($response)
     {
         return Iugu_Factory::createFromResponse(
             self::convertClassToObjectType(), $response
         );
     }
 
-    protected static function createAPI($attributes = []) 
+    protected static function createAPI($attributes = [])
     {
         $response = self::createFromResponse(
             self::API()->request(
@@ -87,7 +87,7 @@ class APIResource extends Iugu_Object
         return $response;
     }
 
-    protected function deleteAPI() 
+    protected function deleteAPI()
     {
         if ($this['id'] == null) {
             return false;
@@ -108,7 +108,7 @@ class APIResource extends Iugu_Object
         return true;
     }
 
-    protected static function searchAPI($options = []) 
+    protected static function searchAPI($options = [])
     {
         try {
             $response = self::API()->request(
@@ -117,13 +117,13 @@ class APIResource extends Iugu_Object
 
             return self::createFromResponse($response);
         } catch (Exception $e) {
-            
+
         }
 
         return [];
     }
 
-    protected static function fetchAPI($key) 
+    protected static function fetchAPI($key)
     {
         try {
             $response = static::API()->request(
@@ -136,7 +136,7 @@ class APIResource extends Iugu_Object
         }
     }
 
-    protected function refreshAPI() 
+    protected function refreshAPI()
     {
         if ($this->is_new()) {
             return false;
@@ -161,7 +161,7 @@ class APIResource extends Iugu_Object
         return true;
     }
 
-    protected function saveAPI() 
+    protected function saveAPI()
     {
         try {
             $response = self::API()->request(

@@ -1,5 +1,7 @@
 # Iugu para PHP
 
+[![Build status](https://img.shields.io/travis/iugu/iugu-php.svg)](https://travis-ci.org/iugu/iugu-php)
+
 ## Requisitos
 
 * PHP 5.4+

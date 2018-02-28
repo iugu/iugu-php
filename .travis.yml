@@ -3,4 +3,4 @@ php:
   - '5.4'
   - '7.1'
 script:
-  - commposer tests
+  - composer tests

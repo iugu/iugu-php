@@ -1,0 +1,31 @@
+
+-
+    request:
+        method: POST
+        url: 'http://api.desenvolvimento/v1/customers'
+        headers:
+            Host: api.desenvolvimento
+            Authorization: 'Basic ZGV2ZWxvcG1lbnRfYXBpX3Rva2VuOg=='
+            Accept: application/json
+            Accept-Charset: utf-8
+            User-Agent: 'Iugu PHPLibrary'
+            Accept-Language: 'pt-br;q=0.9,pt-BR'
+        body: name=Fred+Flintstone
+    response:
+        status:
+            http_version: '1.1'
+            code: '422'
+            message: 'Unprocessable Entity'
+        headers:
+            Server: nginx/1.13.8
+            Date: 'Wed, 28 Feb 2018 18:43:14 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Transfer-Encoding: chunked
+            Connection: keep-alive
+            x-HandledBy: 'api/v1/customer#create'
+            X-UA-Compatible: IE=Edge
+            Cache-Control: no-cache
+            X-Request-Id: a1870d2e11ef4af2b96fa5d5104652cf
+            X-Runtime: '0.037351'
+            Vary: Origin
+        body: '{"errors":{"email":["n\u00e3o pode ficar em branco","n\u00e3o \u00e9 v\u00e1lido"]}}'

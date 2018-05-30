@@ -80,9 +80,6 @@ class APIResource extends Iugu_Object
                 'POST', static::url($attributes), $attributes
             )
         );
-        foreach ($attributes as $attr => $value) {
-            $response[$attr] = $value;
-        }
 
         return $response;
     }

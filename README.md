@@ -31,8 +31,10 @@ O autoload do composer irá cuidar do resto.
 
 ## Exemplo de Uso
 
+A API Key pode ser obtida no [Painel da Iugu](https://app.iugu.com/account), menu Administração > Configurações da Conta;
+
 ```php
-Iugu::setApiKey("c73d49f9-6490-46ee-ba36-dcf69f6334fd"); // Ache sua chave API no [Painel](https://app.iugu.com/account)
+Iugu::setApiKey("c73d49f9-6490-46ee-ba36-dcf69f6334fd"); // Ache sua chave API no Painel
 
 $chargeReturn = Iugu_Charge::create(
     [

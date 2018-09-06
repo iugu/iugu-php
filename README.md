@@ -53,7 +53,7 @@ $chargeReturn = Iugu_Charge::create(
 if( isset($chargeReturn->success) && $chargeReturn->success )
 {
   //APROVADO
-  $invoceId = $resultadoCobranca->invoice_id;
+  $invoceId = $chargeReturn->invoice_id;
   echo 'Pagamento Aprovado';
 }
 else

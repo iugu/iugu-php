@@ -55,8 +55,6 @@ class APIChildResource
             $key = ['id' => $key];
         }
 
-        print_r([$this->mergeParams($key), $this->_parentKeys]);
-
         $result = call_user_func_array($this->_fabricator.'::fetch', [$this->mergeParams($key), $this->_parentKeys]);
         if ($result) {
             $this->configureParentKeys($result);

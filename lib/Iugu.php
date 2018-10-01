@@ -20,6 +20,7 @@ require $baseDirectory.'/Iugu/Charge.php';
 require $baseDirectory.'/Iugu/Invoice.php';
 require $baseDirectory.'/Iugu/Subscription.php';
 require $baseDirectory.'/Iugu/Plan.php';
+require $baseDirectory.'/Iugu/WebHook.php';
 
 // MARKETPLACE
 require $baseDirectory.'/Iugu/Transfer.php';

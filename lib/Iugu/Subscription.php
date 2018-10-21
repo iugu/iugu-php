@@ -145,6 +145,36 @@ class Iugu_Subscription extends APIResource
         return false;
     }
 
+    public function change_plan_simulation($identifier = null)
+    {
+        if ($this->is_new()) {
+            return false;
+        }
+
+        if ($identifier == null) {
+            return false;
+        }
+
+        try {
+            $response = self::API()->request(
+                'GET',
+                static::url($this).'/change_plan_simulation/'.$identifier
+            );
+
+            if (isset($response->errors)) {
+                return false;
+            }
+
+            $new_object = self::createFromResponse($response);
+
+            return $new_object;
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return false;
+    }
+
     public function change_plan($identifier = null)
     {
         if ($this->is_new()) {

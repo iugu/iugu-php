@@ -1,0 +1,32 @@
+
+-
+    request:
+        method: POST
+        url: 'http://api.desenvolvimento/v1/subscriptions'
+        headers:
+            Host: api.desenvolvimento
+            Authorization: 'Basic ZGV2ZWxvcG1lbnRfYXBpX3Rva2VuOg=='
+            Accept: application/json
+            Accept-Charset: utf-8
+            User-Agent: 'Iugu PHPLibrary'
+            Accept-Language: 'pt-br;q=0.9,pt-BR'
+        body: 'plan_identifier=silver&customer_id=A11222C0E33445566E77A8899DD00B00'
+    response:
+        status:
+            http_version: '1.1'
+            code: '200'
+            message: OK
+        headers:
+            Server: nginx/1.13.5
+            Date: 'Wed, 24 Jan 2018 19:47:34 GMT'
+            Content-Type: 'application/json; charset=utf-8'
+            Transfer-Encoding: chunked
+            Connection: keep-alive
+            x-HandledBy: 'api/v1/subscription#create'
+            X-UA-Compatible: IE=Edge
+            ETag: '"fa7ae1adec07ffe45ea2191e16d645c8"'
+            Cache-Control: 'max-age=0, private, must-revalidate'
+            X-Request-Id: 639ff4e9bd2221957b52d2ca3bf2e2cb
+            X-Runtime: '0.067239'
+            Vary: Origin
+        body: '{"id":"C00B1A22CE8A8877A55C444FDED99999","suspended":false,"plan_identifier":"silver","price_cents":1500,"currency":"BRL","features":{},"expires_at":"2019-04-20","created_at":"2018-10-20T21:59:42-03:00","updated_at":"2018-10-20T21:59:45-03:00","customer_name":"Martin Fowler","customer_email":"martin@fowler.com","cycled_at":null,"credits_min":0,"credits_cycle":null,"payable_with":"all","ignore_due_email":null,"customer_id":"A11222C0E33445566E77A8899DD00B00","plan_name":"Silver","customer_ref":"Martin Fowler","plan_ref":"Silver","active":true,"in_trial":null,"credits":0,"credits_based":false,"recent_invoices":null,"subitems":[],"logs":[{"id":"9A8F732BE8054AB282AE915A00DB591B","description":"Fatura criada","notes":"Fatura criada com os items:  1x Ativa\u00e7\u00e3o de Assinatura: Silver = R$ 15,00;","created_at":"2018-10-20T21:59:44-03:00"},{"id":"9F21C27F154447CA97D96EB61EB76C64","description":"Assinatura Criada","notes":"Assinatura Criada ","created_at":"2018-10-20T21:59:42-03:00"}],"custom_variables":[]}'

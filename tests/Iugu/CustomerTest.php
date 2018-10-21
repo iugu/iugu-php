@@ -6,6 +6,11 @@ use PHPUnit\Framework\TestCase;
 
 final class Iugu_CustomerTest extends TestCase
 {
+  public static function setupBeforeClass()
+  {
+    \VCR\VCR::configure()->setCassettePath('../fixtures') ;
+  }
+
   protected function setUp()
   {
     Iugu::$endpoint = "http://api.desenvolvimento";

@@ -33,11 +33,27 @@ class Iugu_APIRequest
 
         list($response_body, $response_code) = $this->requestWithCURL($method, $url, $headers, $data);
 
-        $response = json_decode($response_body);
+        error_log('IUGU - Requisição executada, Response Code: '.$response_code.', Response: '.$response_body);
 
-        if (json_last_error() != JSON_ERROR_NONE) {
+        $response = json_decode($response_body);
+        $jsonError = json_last_error();
+        if(is_null($response) || $jsonError != JSON_ERROR_NONE)
+        {
+            switch($jsonError)
+            {
+                case JSON_ERROR_NONE:           $error = 'Nenhum erro identificado';            break;
+                case JSON_ERROR_DEPTH:          $error = 'Máxima profundidade de nós atingida'; break;
+                case JSON_ERROR_STATE_MISMATCH: $error = 'JSON inválido ou mal formado';        break;
+                case JSON_ERROR_CTRL_CHAR:      $error = 'Caractere de controle encontrado';    break;
+                case JSON_ERROR_SYNTAX:         $error = 'JSON malformado';                     break;
+                case JSON_ERROR_UTF8:           $error = 'Carateres UTF-8 malformados';         break;
+                default:                        $error = 'Erro desconhecido ('.$jsonError.')';  break;
+            }
+            error_log('IUGU - Erro de parse do JSON: '.$error.
+                      ', Response code: '.$response_code.', Mensagem de erro: '.json_last_error_msg().', Response: '.$response_body);
             throw new IuguObjectNotFound($response_body);
         }
+
         if ($response_code == 404) {
             throw new IuguObjectNotFound($response_body);
         }

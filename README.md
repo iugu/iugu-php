@@ -31,10 +31,12 @@ O autoload do composer irá cuidar do resto.
 
 ## Exemplo de Uso
 
-```php
-Iugu::setApiKey("c73d49f9-6490-46ee-ba36-dcf69f6334fd"); // Ache sua chave API no Painel
+A API Key pode ser obtida no [Painel da Iugu](https://app.iugu.com/account), menu Administração > Configurações da Conta;
 
-Iugu_Charge::create(
+```php
+Iugu::setApiKey("*******-****-****-****-********"); // Ache sua chave API no Painel
+
+$chargeReturn = Iugu_Charge::create(
     [
         "token"=> "TOKEN QUE VEIO DO IUGU.JS OU CRIADO VIA BIBLIOTECA",
         "email"=>"your@email.test",
@@ -47,6 +49,19 @@ Iugu_Charge::create(
         ]
     ]
 );
+
+if( isset($chargeReturn->success) && $chargeReturn->success )
+{
+  //APROVADO
+  $invoceId = $chargeReturn->invoice_id;
+  echo 'Pagamento Aprovado';
+}
+else
+{
+  //REPROVADO
+  $errorText = $chargeReturn->errors;
+  echo 'Pagamento Recusado';
+}
 ```
 
 ## Documentação

@@ -125,7 +125,6 @@ class Iugu_APIRequest
 
         $opts[CURLOPT_SSL_VERIFYHOST] = 2;
         $opts[CURLOPT_SSL_VERIFYPEER] = true;
-        $opts[CURLOPT_CAINFO] = realpath(dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'data').DIRECTORY_SEPARATOR.'ca-bundle.crt';
 
         curl_setopt_array($curl, $opts);
 

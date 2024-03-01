@@ -44,8 +44,8 @@ class Iugu_Utilities
                 $k = $prefix.'[]';
             }
 
-            if (is_array($v)) {
-                $params[] = self::arrayToParams($v, $k);
+            if (is_array($v) || is_object($v)) {
+                $params[] = self::arrayToParams((array)$v, $k);
             } else {
                 $params[] = $k.'='.urlencode($v);
             }

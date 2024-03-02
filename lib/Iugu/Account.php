@@ -31,4 +31,25 @@ class Iugu_Account extends APIResource
     {
         return self::searchAPI($options);
     }
+
+    public function configuration()
+    {
+        try {
+            if ($this->is_new()) {
+                return false;
+            }
+            $response = self::API()->request(
+                'POST', static::url() . '/configuration', $this->modifiedAttributes()
+            );
+             $new_object = self::createFromResponse($response);
+            $this->copy($new_object);
+            $this->resetStates();
+             if (isset($response->errors)) {
+                throw new IuguException();
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+         return true;
+    }
 }

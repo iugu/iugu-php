@@ -59,9 +59,9 @@ class Iugu_APIRequest
         }
 
         if (isset($response->errors)) {
-            if ((gettype($response->errors) != 'string') && count(get_object_vars($response->errors)) == 0) {
+            if ((gettype($response->errors) != 'string') && count(get_object_vars((object)$response->errors)) == 0) {
                 unset($response->errors);
-            } elseif ((gettype($response->errors) != 'string') && count(get_object_vars($response->errors)) > 0) {
+            } elseif ((gettype($response->errors) != 'string') && count(get_object_vars((object)$response->errors)) > 0) {
                 $response->errors = (array) $response->errors;
             }
 

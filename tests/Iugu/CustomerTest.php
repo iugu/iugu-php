@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 final class Iugu_CustomerTest extends TestCase
 {
-  protected function setUp()
+  protected function setUp(): void
   {
     Iugu::$endpoint = "http://api.desenvolvimento";
     Iugu::setApiKey("development_api_token");

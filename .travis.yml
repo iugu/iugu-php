@@ -1,7 +1,10 @@
 language: php
 php:
-  - '7.1'
+  - 7.1
+  - 7.2
+  - 8.0
+
 before_install:
-  - composer install
+  - composer install --prefer-dist --no-interaction
 script:
   - composer tests

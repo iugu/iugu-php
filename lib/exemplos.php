@@ -1,6 +1,6 @@
 <?php
     // exemplo de uso da classe BankVerification
-    Iugu::setApiKey($user_token);   // Chave do user
+    Iugu::setApiKey('api-key');   // Chave do user
     $updateBank = Iugu_BankVerification::create(Array(
             "agency"                    => '9999-9',
             "account"                   => '999999-9',
@@ -62,7 +62,7 @@
     Iugu::setApiKey('TOKEN_IUGU');   // Chave do user
     $transfer = Iugu_Transfer::create(Array(
         "receiver_id"               => "CLIENT_ID", // chave da conta mestre ou da conta recebedora
-        "amount_cents"              => $numValorCentavos
+        "amount_cents"              => 4000 // valor em centavos = R$ 40,00
     ));
 
 

@@ -18,3 +18,5 @@ tmp/**
 
 /vendor/
 composer.lock
+
+.idea
